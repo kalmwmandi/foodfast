@@ -9,8 +9,10 @@ import { useAppStore } from "@/lib/store"
 import { CartItem } from "@/components/cart-item"
 import { BottomNav } from "@/components/bottom-nav"
 import { restaurants } from "@/lib/data"
+import { useRouter } from "next/navigation"
 
 export default function CartPage() {
+  const router = useRouter()
   const { cart, getCartTotal, clearCart, setCurrentOrder } = useAppStore()
   const cartTotal = getCartTotal()
   const deliveryFee = 10000
@@ -37,7 +39,7 @@ export default function CartPage() {
     }
     setCurrentOrder(order)
     clearCart()
-    window.location.href = "/tracking"
+    router.push("/tracking")
   }
 
   if (cart.length === 0) {
